@@ -1,0 +1,164 @@
+﻿<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=big5">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<title>Dijkstra</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:新細明體;
+	panose-1:2 2 5 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Cambria;
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:"\@新細明體";
+	panose-1:2 1 6 1 0 1 1 1 1 1;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Calibri",sans-serif;}
+h1
+	{mso-style-link:"標題 1 字元";
+	margin-top:9.0pt;
+	margin-right:0cm;
+	margin-bottom:9.0pt;
+	margin-left:0cm;
+	line-height:300%;
+	page-break-after:avoid;
+	font-size:26.0pt;
+	font-family:"Cambria",serif;}
+p.MsoHeader, li.MsoHeader, div.MsoHeader
+	{mso-style-link:"頁首 字元";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	layout-grid-mode:char;
+	font-size:10.0pt;
+	font-family:"Calibri",sans-serif;}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{mso-style-link:"頁尾 字元";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	layout-grid-mode:char;
+	font-size:10.0pt;
+	font-family:"Calibri",sans-serif;}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-link:"註解方塊文字 字元";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:9.0pt;
+	font-family:"Cambria",serif;}
+span.a
+	{mso-style-name:"註解方塊文字 字元";
+	mso-style-link:註解方塊文字;
+	font-family:"Cambria",serif;}
+span.1
+	{mso-style-name:"標題 1 字元";
+	mso-style-link:"標題 1";
+	font-family:"Cambria",serif;
+	font-weight:bold;}
+span.a0
+	{mso-style-name:"頁首 字元";
+	mso-style-link:頁首;}
+span.a1
+	{mso-style-name:"頁尾 字元";
+	mso-style-link:頁尾;}
+.MsoChpDefault
+	{font-family:"Calibri",sans-serif;}
+ /* Page Definitions */
+ @page WordSection1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	layout-grid:18.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style>
+
+</head>
+
+<body lang=ZH-TW style='text-justify-trim:punctuation'>
+
+<div class=WordSection1 style='layout-grid:18.0pt'>
+
+<h1><img width=312 height=195 src="Dijkstra.files/image001.jpg" align=left
+hspace=12><span lang=EN-US>Dijkstra</span><span style='font-family:"新細明體",serif'>算法</span></h1>
+
+<p class=MsoNormal align=center style='text-align:center'><span lang=EN-US>&nbsp;</span></p>
+
+<h1><span style='font-family:"新細明體",serif'>資料</span></h1>
+
+<p class=MsoNormal><span style='font-family:"新細明體",serif'>有三個陣列儲存資訊。</span></p>
+
+<p class=MsoNormal><span lang=EN-US>Final</span><span style='font-family:"新細明體",serif'>陣列：記錄</span><span
+lang=EN-US>Vertex</span><span style='font-family:"新細明體",serif'>是否找到最終值</span></p>
+
+<p class=MsoNormal><span style='font-family:"新細明體",serif'>Ｐ陣列：一個記錄此</span><span
+lang=EN-US>Vertex</span><span style='font-family:"新細明體",serif'>由哪一個</span><span
+lang=EN-US>Vertex</span><span style='font-family:"新細明體",serif'>走來最快。</span></p>
+
+<p class=MsoNormal><span style='font-family:"新細明體",serif'>Ｄ陣列：一個記錄由起點走此</span><span
+lang=EN-US>Vertex</span><span style='font-family:"新細明體",serif'>的</span><span
+lang=EN-US>Weight</span><span style='font-family:"新細明體",serif'>是多少。</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<h1><span style='font-family:"新細明體",serif'>運作敘述</span></h1>
+
+<p class=MsoNormal><span style='font-family:"新細明體",serif'>首先初始化三個陣列，把</span><span
+lang=EN-US>Final</span><span style='font-family:"新細明體",serif'>全設為未找到，Ｐ陣列全部設定為</span><span
+lang=EN-US>-1</span><span style='font-family:"新細明體",serif'>，Ｄ陣列全設為</span><span
+lang=EN-US>Begin Vertex</span><span style='font-family:"新細明體",serif'>至各點的權值。</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:"新細明體",serif'>接著設定Ｄ陣列的</span><span
+lang=EN-US>Begin Vertex</span><span style='font-family:"新細明體",serif'>為</span><span
+lang=EN-US>0</span><span style='font-family:"新細明體",serif'>，</span><span
+lang=EN-US>Begin Vertex</span><span style='font-family:"新細明體",serif'>的</span><span
+lang=EN-US>Final</span><span style='font-family:"新細明體",serif'>為已找到。</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:"新細明體",serif'>接下來是一個迴圈，每次循環將找到一個點的最快路徑，迴圈將重複執行</span><span
+lang=EN-US>Vertex Count</span><span style='font-family:"新細明體",serif'>次，迴圈內首要執行的事情是查找Ｄ表，找出Ｄ表內</span><span
+lang=EN-US>Weight</span><span style='font-family:"新細明體",serif'>最低的值，找到後，設定該</span><span
+lang=EN-US>Vertex</span><span style='font-family:"新細明體",serif'>的</span><span
+lang=EN-US>Final</span><span style='font-family:"新細明體",serif'>為已找到，並且更新Ｐ表內容，看由找到的</span><span
+lang=EN-US>Vertex</span><span style='font-family:"新細明體",serif'>走至其他點是否有比較快，有則改變其Ｐ表值為</span><span
+lang=EN-US>P[Vertex] + weight[Vertex][Target]</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<h1><span style='font-family:"新細明體",serif'>輸出</span></h1>
+
+<p class=MsoNormal><span style='font-family:"新細明體",serif'>如果要查找由</span><span
+lang=EN-US>Begin</span><span style='font-family:"新細明體",serif'>走至某個點的</span><span
+lang=EN-US>Weight</span><span style='font-family:"新細明體",serif'>，直接看</span><span
+lang=EN-US>P</span><span style='font-family:"新細明體",serif'>陣列</span></p>
+
+<p class=MsoNormal><span style='font-family:"新細明體",serif'>如果要知道其詳細路線，由Ｄ陣列的值慢慢往後推即可</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:"新細明體",serif'>註：圖片有錯，</span><span
+lang=EN-US>Dijkstra</span><span style='font-family:"新細明體",serif'>算法沒有針對哪一個點前進，因此沒有</span><span
+lang=EN-US>end Vertex</span><span style='font-family:"新細明體",serif'>存在</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+</div>
+
+</body>
+
+</html>
